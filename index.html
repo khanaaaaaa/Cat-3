@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Cat Viewer ≽^•⩊•^≼</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; background: #fff8f0; margin: 0; padding: 20px; }
+        h1 { color: #e07b39; }
+        img { width: 400px; height: 300px; object-fit: cover; border-radius: 12px; margin: 20px 0; }
+        button { padding: 10px 24px; font-size: 16px; background: #e07b39; color: white; border: none; border-radius: 8px; cursor: pointer; }
+        button:hover { background: #c0622a; }
+    </style>
+</head>
+<body>
+    <h1>Interactive Cat Viewer ≽^•⩊•^≼</h1>
+    <img id="cat" src="" alt="A cute cat">
+    <br>
+    <button onclick="loadCat()">New Cat</button>
+
+    <script>
+        function loadCat() {
+            document.getElementById('cat').src = 'https://cataas.com/cat?t=' + Date.now();
+        }
+        loadCat();
+    </script>
+</body>
+</html>
