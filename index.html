@@ -5,36 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Cat Viewer ≽^•⩊•^≼</title>
     <style>
-        body { font-family: sans-serif; text-align: center; background: #fff8f0; margin: 0; padding: 20px; }
-        h1 { color: #e07b39; }
-        img { width: 400px; height: 300px; object-fit: cover; border-radius: 12px; margin: 20px 0; }
-        button { padding: 10px 24px; font-size: 16px; background: #e07b39; color: white; border: none; border-radius: 8px; cursor: pointer; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: sans-serif; background: #fff8f0; min-height: 100vh; display: flex; flex-direction: column; }
+
+        header { background: #e07b39; padding: 16px; text-align: center; }
+        header h1 { color: white; font-size: 1.8rem; }
+
+        main { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 30px 20px; gap: 16px; }
+
+        img { width: 400px; height: 300px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+        #fact { max-width: 400px; color: #555; font-style: italic; text-align: center; line-height: 1.6; }
+        #counter { color: #e07b39; font-weight: bold; }
+
+        button { padding: 12px 28px; font-size: 16px; background: #e07b39; color: white; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
         button:hover { background: #c0622a; }
-        #fact { max-width: 400px; margin: 10px auto; color: #555; font-style: italic; }
-        #counter { color: #e07b39; font-weight: bold; margin-top: 10px; }
+
+        footer { text-align: center; padding: 16px; color: #aaa; font-size: 0.85rem; }
+        footer a { color: #e07b39; text-decoration: none; }
     </style>
 </head>
 <body>
-    <h1>Interactive Cat Viewer ≽^•⩊•^≼</h1>
-    <img id="cat" src="" alt="A cute cat">
+
+    <header>
+        <h1>Interactive Cat Viewer ≽^•⩊•^≼</h1>
+    </header>
+    <main>
+        <img id="cat" src="" alt="A cute cat">
     <p id="fact"></p>
     <p id="counter">Cats viewed: 0</p>
     <button onclick="loadCat()">New Cat</button>
+    </main>
 
-    <script>
-        let count = 0;
+    <footer>
+        <a href="about.html">About</a> 
+    </footer>
 
-        async function loadCat() {
-            document.getElementById('cat').src = 'https://cataas.com/cat?t=' + Date.now();
-            count++;
-            document.getElementById('counter').textContent = 'Cats viewed: ' + count;
-
-            const res = await fetch('https://catfact.ninja/fact');
-            const data = await res.json();
-            document.getElementById('fact').textContent = '"' + data.fact + '"';
-        }
-
-        loadCat();
-    </script>
+    <audio id="meow" src="https://www.myinstants.com/media/sounds/cat-meow-sound-effect.mp3"></audio>
+    <script src="app.js"></script>
+    
 </body>
 </html>
