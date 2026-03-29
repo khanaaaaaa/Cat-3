@@ -10,18 +10,30 @@
         img { width: 400px; height: 300px; object-fit: cover; border-radius: 12px; margin: 20px 0; }
         button { padding: 10px 24px; font-size: 16px; background: #e07b39; color: white; border: none; border-radius: 8px; cursor: pointer; }
         button:hover { background: #c0622a; }
+        #fact { max-width: 400px; margin: 10px auto; color: #555; font-style: italic; }
+        #counter { color: #e07b39; font-weight: bold; margin-top: 10px; }
     </style>
 </head>
 <body>
     <h1>Interactive Cat Viewer ≽^•⩊•^≼</h1>
     <img id="cat" src="" alt="A cute cat">
-    <br>
+    <p id="fact"></p>
+    <p id="counter">Cats viewed: 0</p>
     <button onclick="loadCat()">New Cat</button>
 
     <script>
-        function loadCat() {
+        let count = 0;
+
+        async function loadCat() {
             document.getElementById('cat').src = 'https://cataas.com/cat?t=' + Date.now();
+            count++;
+            document.getElementById('counter').textContent = 'Cats viewed: ' + count;
+
+            const res = await fetch('https://catfact.ninja/fact');
+            const data = await res.json();
+            document.getElementById('fact').textContent = '"' + data.fact + '"';
         }
+
         loadCat();
     </script>
 </body>
